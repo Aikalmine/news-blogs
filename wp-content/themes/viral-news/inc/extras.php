@@ -144,8 +144,9 @@ if (function_exists('viral_news_check_social_icon_exists')) {
         $twitter = get_theme_mod('viral_news_social_twitter', '#');
         $youtube = get_theme_mod('viral_news_social_youtube', '#');
         $instagram = get_theme_mod('viral_news_social_instagram', '#');
+        $linkedin = get_theme_mod('viral_news_social_linkedin', '#');
 
-        if ($facebook || $twitter || $youtube || $instagram) {
+        if ($facebook || $twitter || $youtube || $instagram || $linkedin) {
             return true;
         } else {
             return false;
@@ -162,6 +163,7 @@ if (!function_exists('viral_news_social_links')) {
         $twitter = get_theme_mod('viral_news_social_twitter', '#');
         $youtube = get_theme_mod('viral_news_social_youtube', '#');
         $instagram = get_theme_mod('viral_news_social_instagram', '#');
+        $linkedin = get_theme_mod('viral_news_social_linkedin', '#');
 
         if ($facebook)
             echo '<a class="vn-facebook" href="' . esc_url($facebook) . '" target="_blank"><i class="mdi mdi-facebook"></i></a>';
@@ -171,6 +173,9 @@ if (!function_exists('viral_news_social_links')) {
 
         if ($youtube)
             echo '<a class="vn-youtube" href="' . esc_url($youtube) . '" target="_blank"><i class="mdi mdi-youtube"></i></a>';
+
+        if ($linkedin)
+            echo '<a class="vn-linkedin" href="' . esc_url($linkedin) . '" target="_blank"><i class="mdi mdi-linkedin"></i></a>';
 
         if ($instagram)
             echo '<a class="vn-instagram" href="' . esc_url($instagram) . '" target="_blank"><i class="mdi mdi-instagram"></i></a>';
@@ -318,6 +323,27 @@ function viral_news_filter_wordpress_widget_title_class($default_widget_args) {
 }
 
 add_filter('elementor/widgets/wordpress/widget_args', 'viral_news_filter_wordpress_widget_title_class');
+
+function viral_news_create_elementor_kit() {
+    if (!did_action('elementor/loaded')) {
+        return;
+    }
+
+    $kit = Elementor\Plugin::$instance->kits_manager->get_active_kit();
+
+    if (!$kit->get_id()) {
+        $created_default_kit = Elementor\Plugin::$instance->kits_manager->create_default();
+        update_option('elementor_active_kit', $created_default_kit);
+    }
+}
+
+function viral_news_enable_wpform_export($args) {
+    $args['can_export'] = true;
+    return $args;
+}
+
+add_action('init', 'viral_news_create_elementor_kit');
+add_filter('wpforms_post_type_args', 'viral_news_enable_wpform_export');
 
 function viral_news_premium_demo_config($demos) {
     $premium_demos = array(

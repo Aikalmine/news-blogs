@@ -368,6 +368,20 @@ function viral_news_customize_register($wp_customize) {
         'label' => esc_html__('Youtube', 'viral-news')
     ));
 
+    
+
+    $wp_customize->add_setting('viral_news_social_linkedin', array(
+        'sanitize_callback' => 'esc_url_raw',
+        'default' => '#'
+    ));
+
+    $wp_customize->add_control('viral_news_social_linkedin', array(
+        'settings' => 'viral_news_social_linkedin',
+        'section' => 'viral_news_social_icons_sec',
+        'type' => 'url',
+        'label' => esc_html__('Linkedin', 'viral-news')
+    ));
+
     $wp_customize->add_setting('viral_news_social_instagram', array(
         'sanitize_callback' => 'esc_url_raw',
         'default' => '#'
@@ -380,15 +394,15 @@ function viral_news_customize_register($wp_customize) {
         'label' => esc_html__('Instagram', 'viral-news')
     ));
 
-    $wp_customize->add_setting('viral_news_social_upgrade_text', array(
-        'sanitize_callback' => 'viral_news_sanitize_text'
-    ));
+    // $wp_customize->add_setting('viral_news_social_upgrade_text', array(
+    //     'sanitize_callback' => 'viral_news_sanitize_text'
+    // ));
 
-    $wp_customize->add_control(new Viral_News_Upgrade_Text($wp_customize, 'viral_news_social_upgrade_text', array(
-        'section' => 'viral_news_social_icons_sec',
-        'label' => esc_html__('For unlimited and all social icon option,', 'viral-news'),
-        'priority' => 100
-    )));
+    // $wp_customize->add_control(new Viral_News_Upgrade_Text($wp_customize, 'viral_news_social_upgrade_text', array(
+    //     'section' => 'viral_news_social_icons_sec',
+    //     'label' => esc_html__('For unlimited and all social icon option,', 'viral-news'),
+    //     'priority' => 100
+    // )));
 
     /* ============FRONT PAGE PANEL============ */
     $wp_customize->add_panel('viral_news_front_page_panel', array(

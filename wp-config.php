@@ -1,4 +1,23 @@
 <?php
+//Begin Really Simple SSL session cookie settings
+@ini_set('session.cookie_httponly', true);
+@ini_set('session.cookie_secure', true);
+@ini_set('session.use_only_cookies', true);
+//END Really Simple SSL
+
+//Begin Really Simple SSL Load balancing fix
+if ((isset($_ENV["HTTPS"]) && ("on" == $_ENV["HTTPS"]))
+|| (isset($_SERVER["HTTP_X_FORWARDED_SSL"]) && (strpos($_SERVER["HTTP_X_FORWARDED_SSL"], "1") !== false))
+|| (isset($_SERVER["HTTP_X_FORWARDED_SSL"]) && (strpos($_SERVER["HTTP_X_FORWARDED_SSL"], "on") !== false))
+|| (isset($_SERVER["HTTP_CF_VISITOR"]) && (strpos($_SERVER["HTTP_CF_VISITOR"], "https") !== false))
+|| (isset($_SERVER["HTTP_CLOUDFRONT_FORWARDED_PROTO"]) && (strpos($_SERVER["HTTP_CLOUDFRONT_FORWARDED_PROTO"], "https") !== false))
+|| (isset($_SERVER["HTTP_X_FORWARDED_PROTO"]) && (strpos($_SERVER["HTTP_X_FORWARDED_PROTO"], "https") !== false))
+|| (isset($_SERVER["HTTP_X_PROTO"]) && (strpos($_SERVER["HTTP_X_PROTO"], "SSL") !== false))
+) {
+$_SERVER["HTTPS"] = "on";
+}
+//END Really Simple SSL
+
 /**
  * The base configuration for WordPress
  *
@@ -20,13 +39,13 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'news_blogs' );
+define( 'DB_NAME', 'theanalyses' );
 
 /** MySQL database username */
 define( 'DB_USER', 'root' );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', '' );
+define( 'DB_PASSWORD', 'db@123' );
 
 /** MySQL hostname */
 define( 'DB_HOST', 'localhost' );
@@ -48,14 +67,14 @@ define( 'DB_COLLATE', '' );
  *
  * @since 2.6.0
  */
-define( 'AUTH_KEY',         '-D9I(}O4/95y]I4LV.>M*K_;2rzwER O*/(EMym:hIPceL6AZGNxUU<CZMV)>F#4' );
-define( 'SECURE_AUTH_KEY',  'oRwhPI~TLq}M1rIVD&n<#hUpYo#qPo,raE<K(YkGenqGycEyE+!Agay u<<5y<H{' );
-define( 'LOGGED_IN_KEY',    '(o06]T}YgAuuNU_VAhaiXGG,QxpY/T/Bocb~h q`og;`HT!{.UYW_IgM6,)vZ`V]' );
-define( 'NONCE_KEY',        'bL<^38}lO_b?h2)}jx@1%/O!T5ttY4|z3m{lJ%E#UY$e5?^j~$:(2qn|`!&e?S:V' );
-define( 'AUTH_SALT',        ')<tAeC8xTg{n05BG>eYkXGdt3$Splv-}P`S[8$GBlA$^)TQfIq!>Bs{6W&--%0]t' );
-define( 'SECURE_AUTH_SALT', '97~](7t%O{8Af@W7?aH8*%pfZP?w!FyI;VJ2LxEgO(Bvu&F,Ff$?y/?4X5yA/m>h' );
-define( 'LOGGED_IN_SALT',   'z_@:Mg {7@swBO*`;Hj0^g4!$@=-mguV+4J:j)K/26KP.%2;4Z*[7CQ $^CHl` %' );
-define( 'NONCE_SALT',       'Q`jruaUVM0oI?$Jg-_%V7w,,<xHW7Pg$WK5C]nz.`MwZVLe^?/^N`|xX@xoQ1_|?' );
+define( 'AUTH_KEY',         '/`. xYA`hxn*+t1%jbpk._Yy,a`W-l#9$X:&Y]j@teyG6rc0Lr>R/2:/|]P!+bC~' );
+define( 'SECURE_AUTH_KEY',  '9VP~bjL2N~:),^)_vWNB}0ghpI~cF)BA93>,`4GJBLl3TYa)a./QsdS)2{7/4vD.' );
+define( 'LOGGED_IN_KEY',    '-9YD Ak2[z] sZPRF-6ZVjSu-%4jr}~|s#}f<z52sn5::68TcHl:rRo#]/mC<]@K' );
+define( 'NONCE_KEY',        'HMuO|yVi+>&z)mpvOV~2=CGHk_c 0sPL%UF5T%@BK6(!(kRfGr^j^C)I]{DuB#=o' );
+define( 'AUTH_SALT',        'KwuVBKxK}SeA5I[LK)<G#eka1MBOXN_%t2`ICsx;#HG6+7o:Xz0O-IQ[}hsxP&.p' );
+define( 'SECURE_AUTH_SALT', 'gu&ID=&<UHLtxzzZ>I}diC3VL2&j<2mo5.OUjG(cHP%c#1lRfZ vlG;`HcJ<U+,H' );
+define( 'LOGGED_IN_SALT',   'N|NhkT FTs5^I8so) -6+-{,`S?9*9fvkP/`la3u@iwdU<$jr0zy9Yh%#G^]dZ3(' );
+define( 'NONCE_SALT',       'a&j}P[WdoQG@98Tt#E9Bs)%?Vy}3C}y&`eUK]&cI9/N|?sqnK<oxLiPZS410?GCM' );
 
 /**#@-*/
 

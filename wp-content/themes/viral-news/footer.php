@@ -34,8 +34,7 @@
     <div class="vn-bottom-footer">
         <div class="vn-container">
             <div class="vn-site-info">
-<!--                 <?php printf('%4$s <span class="sep"> | </span><a title="%3$s" href="%1$s" target="_blank">Viral News</a> %2$s', 'https://hashthemes.com/wordpress-theme/viral-news/', esc_html__('by HashThemes', 'viral-news'), esc_attr__('Download Viral News', 'viral-news'), esc_html__('WordPress Theme', 'viral-news')); ?> -->
-				<?php printf('Developed by Muhammad Ali <span class="sep">   |  </span>  Copyright © 2021')?>
+                <?php printf('%4$s <span class="sep"> | </span><a title="%3$s" href="%1$s" target="_blank">Viral News</a> %2$s', 'https://hashthemes.com/wordpress-theme/viral-news/', esc_html__('by HashThemes', 'viral-news'), esc_attr__('Download Viral News', 'viral-news'), esc_html__('WordPress Theme', 'viral-news')); ?>
             </div>
         </div>
     </div>
